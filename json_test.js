@@ -13,7 +13,7 @@ const test = (name, fn) => {
 }
 
 const assert = (pred, msg = '') => {
-    if (!pred) throw new Error(`assert failed ${msg}`);
+    if (!pred) throw new Error(`assert failed: ${msg}`);
 }
 
 const assertObject = (obj, msg = '') => {
@@ -46,10 +46,10 @@ test('all enemies have all fields', () => {
         assertKey('name_en', enemy);
         assertKey('name_jp', enemy);
         assertKey('stompable', enemy);
-        assertKey('spinnable', enemy);
         assertKey('flammable', enemy);
         assertKey('starrable', enemy);
         assertKey('boss', enemy);
+        assertKey('kill_condition', enemy);
     });
 });
 
@@ -58,10 +58,12 @@ test('all enemies have correct field data', () => {
         assertName(enemy.name_en, `english name of ${JSON.stringify(enemy)} is wrong`);
         assertName(enemy.name_jp, `japanese name of ${JSON.stringify(enemy)} is wrong`);
         assert(typeof enemy.stompable === 'boolean');
-        assert(typeof enemy.spinnable === 'boolean');
         assert(typeof enemy.flammable === 'boolean');
         assert(typeof enemy.starrable === 'boolean');
         assert(typeof enemy.boss === 'boolean');
+        assert(typeof enemy.kill_condition === 'number' &&
+            enemy.kill_condition === 0 || enemy.kill_condition === 1 || enemy.kill_condition === 2
+        );
     });
 });
 
@@ -74,7 +76,7 @@ test('no duplicate enemy names', () => {
     });
 });
 
-test('english names are lowercase', () => {
+test('all english names are lowercase', () => {
     enemies.forEach(enemy => {
         assert(enemy.name_en === enemy.name_en.toLowerCase(), `${enemy.name_en} not lowercase`);
     });
@@ -121,7 +123,7 @@ test('no duplicate level names in zones', () => {
             const testLevel = levels[index];
             if (testLevel.zone !== level.zone) continue;
 
-            assert(level.stage !== testLevel.stage, `duplicate level: ${level.zone}${level.stage}`);
+            assert(level.stage !== testLevel.stage, `duplicate level: ${level.zone} ${level.stage}`);
         }
     });
 });
@@ -135,6 +137,7 @@ test('correct amount of total zones', () => {
         }
     });
 
+    // 6 zones + 1 overworld
     assert(foundZones.length === 6 + 1);
 });
 
