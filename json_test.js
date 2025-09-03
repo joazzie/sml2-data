@@ -28,6 +28,10 @@ const assertName = (name, msg = '') => {
     assert(typeof name === 'string' && name !== '', msg);
 }
 
+const assertKey = (key, obj) => {
+    assert(key in obj, `key ${key} not in obj ${JSON.stringify(obj)}`);
+}
+
 /// tests
 test('all json data is an array', () => {
     assert(Array.isArray(enemies));
@@ -39,42 +43,64 @@ test('all json data is an array', () => {
 test('all enemies have all fields', () => {
     enemies.forEach(enemy => {
         assertObject(enemy);
-        assert('name' in enemy);
-        assert('stompable' in enemy);
-        assert('spinable' in enemy);
-        assert('flammable' in enemy);
-        assert('starrable' in enemy);
+        assertKey('name_en', enemy);
+        assertKey('name_jp', enemy);
+        assertKey('stompable', enemy);
+        assertKey('spinnable', enemy);
+        assertKey('flammable', enemy);
+        assertKey('starrable', enemy);
+        assertKey('boss', enemy);
     });
 });
 
 test('all enemies have correct field data', () => {
     enemies.forEach(enemy => {
-        assertName(enemy.name);
+        assertName(enemy.name_en, `english name of ${JSON.stringify(enemy)} is wrong`);
+        assertName(enemy.name_jp, `japanese name of ${JSON.stringify(enemy)} is wrong`);
         assert(typeof enemy.stompable === 'boolean');
-        assert(typeof enemy.spinable === 'boolean');
+        assert(typeof enemy.spinnable === 'boolean');
         assert(typeof enemy.flammable === 'boolean');
         assert(typeof enemy.starrable === 'boolean');
+        assert(typeof enemy.boss === 'boolean');
     });
 });
 
 test('no duplicate enemy names', () => {
     enemies.forEach((enemy, enemyIndex) => {
         for (let index = enemyIndex + 1; index < enemies.length; index++) {
-            assert(enemy.name !== enemies[index].name);
+            assert(enemy.name_en !== enemies[index].name_en, `duplicate english name: ${enemy.name_en}`);
+            assert(enemy.name_jp !== enemies[index].name_jp, `duplicate japanese name: ${enemy.name_jp}`);
         }
     });
+});
+
+test('english names are lowercase', () => {
+    enemies.forEach(enemy => {
+        assert(enemy.name_en === enemy.name_en.toLowerCase(), `${enemy.name_en} not lowercase`);
+    });
+});
+
+test('correct amount of bosses', () => {
+    let bosses = 0;
+    enemies.forEach(enemy => {
+        if (enemy.boss) bosses += 1;
+    });
+
+    // 3 pigs + 5 regular + 1 wario
+    const expected =  3 + 5 + 1;
+    assert(bosses === expected, `found: ${bosses}, expected: ${expected}`);
 });
 
 /// level tests
 test('all levels have all fields', () => {
     levels.forEach(level => {
         assertObject(level);
-        assert('zone' in level);
-        assert('stage' in level);
-        assert('stars' in level);
-        assert('coins' in level);
-        assert('question_blocks' in level);
-        assert('money_bags' in level);
+        assertKey('zone', level);
+        assertKey('stage', level);
+        assertKey('stars', level);
+        assertKey('coins', level);
+        assertKey('question_blocks', level);
+        assertKey('money_bags', level);
     });
 });
 
@@ -95,7 +121,7 @@ test('no duplicate level names in zones', () => {
             const testLevel = levels[index];
             if (testLevel.zone !== level.zone) continue;
 
-            assert(level.stage !== testLevel.stage);
+            assert(level.stage !== testLevel.stage, `duplicate level: ${level.zone}${level.stage}`);
         }
     });
 });
@@ -116,16 +142,16 @@ test('correct amount of total zones', () => {
 test('all enemy_levels have all fields', () => {
     enemy_level.forEach(data => {
         assertObject(data);
-        assert('enemy_name' in data);
-        assert('level_zone' in data);
-        assert('level_stage' in data);
-        assert('amount' in data);
+        assertKey('enemy_name_en', data);
+        assertKey('level_zone', data);
+        assertKey('level_stage', data);
+        assertKey('amount', data);
     });
 });
 
 test('all enemy_levels have correct field data', () => {
     enemy_level.forEach(data => {
-        assertName(data.enemy_name);
+        assertName(data.enemy_name_en);
         assertName(data.level_stage);
         assertName(data.level_zone);
         assertAmount(data.amount);
@@ -135,8 +161,8 @@ test('all enemy_levels have correct field data', () => {
 test('all enemy_level entries have field data of other tables', () => {
     enemy_level.forEach(data => {
         assert(
-            enemies.find(enemy => enemy.name === data.enemy_name) !== undefined,
-            `no enemy with name: ${data.enemy_name}`
+            enemies.find(enemy => enemy.name_en === data.enemy_name_en) !== undefined,
+            `no enemy with name: ${data.enemy_name_en}`
         );
 
         assert(
@@ -149,8 +175,8 @@ test('all enemy_level entries have field data of other tables', () => {
 test('all enemies exist in enemy_level data', () => {
     enemies.forEach(enemy => {
         assert(
-            enemy_level.find(data => data.enemy_name === enemy.name) !== undefined,
-            `no enemy in data with name: ${enemy.name}`
+            enemy_level.find(data => data.enemy_name_en === enemy.name_en) !== undefined,
+            `no enemy in data with name: ${enemy.name_en}`
         );
     });
 });
