@@ -93,3 +93,5 @@ interface ProjectilesJson {
     exists_in: ProjectileAppearance[];
 }
 ```
+
+**Note that** `fireball (m)` and `fireball (l)` are the different sized fireballs from the flame spitters in wario's castle, medium and large (`fireball (s)` is the regular fire piranha plant fireball).
