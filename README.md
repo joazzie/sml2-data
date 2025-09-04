@@ -1,4 +1,4 @@
-## A collection of Super Mario Land 2 data.
+# A collection of Super Mario Land 2 data.
 
 ### Levels
 Level data can be found in `./levels.json`, which is specified as:
@@ -46,7 +46,9 @@ interface Enemy {
 type EnemiesJson = Enemy[];
 ```
 
-*Note that* both the lowering spikes in turtle 2 and the teeth in turtle 3 are not officially counted as enemies. So they are not present in this list. 
+**Note that** both the lowering spikes in turtle 2 and the teeth in turtle 3 are not officially counted as enemies. So they are not present in this list. 
+
+**Also** note that the tiny octopuses spit out by the turtle zone boss are classified as projectiles, so they can be found there.
 
 ### Enemy-Level connection
 To find out which enemies are in which levels you can look at `./enemy_level.json`, which is specified as:
@@ -62,4 +64,32 @@ interface EnemyLevel {
 }
 
 type EnemyLevelJson = EnemyLevel[];
+```
+
+### Projectiles
+Projectile data can be found in `./projectiles.json`, which is specified as:
+```ts
+interface Projectile {
+    name: string;
+    /** The english enemy name, corresponding to the `name_en` fields in `enemies.json`.
+     * If the projectile has no corresponding enemy, this is null.
+     */
+    enemy_name_en: string | null;
+    /** Whether the projectile can be reached and killed with a star */
+    starrable: boolean;
+}
+
+interface ProjectileAppearance {
+    /** The name of the projectile, corresponding to the `name` fields in the `Projectile` array */
+    projectile_name: string;
+    /** The zone of the level, corresponding to the `zone` fields in `levels.json` */
+    level_zone: string;
+    /** The stage of the level, corresponding to the `stage` fields in `levels.json` */
+    level_stage: string;
+}
+
+interface ProjectilesJson {
+    projectiles: Projectile[];
+    exists_in: ProjectileAppearance[];
+}
 ```
