@@ -1,0 +1,10 @@
+{
+    "hazards": [
+        {"name": "lowering spike", "starrable": true},
+        {"name": "tooth", "starrable": true}
+    ],
+    "appearances": [
+        {"hazard_name": "lowering spike", "level_zone": "turtle", "level_stage": "2", "amount": 10},
+        {"hazard_name": "tooth", "level_zone": "turtle", "level_stage": "3", "amount": 3}
+    ]
+}

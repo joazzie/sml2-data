@@ -9,7 +9,7 @@ interface Level {
     stars: number;
     coins: number;
     question_blocks: number;
-    /** The total amount of money inside moneybags in this level */
+    /** Each money bag contains 50 coins */
     money_bags: number;
 }
 
@@ -46,9 +46,7 @@ interface Enemy {
 type EnemiesJson = Enemy[];
 ```
 
-**Note that** both the lowering spikes in turtle 2 and the teeth in turtle 3 are not officially counted as enemies. So they are not present in this list. 
-
-**Also** note that the tiny octopuses spit out by the turtle zone boss are classified as projectiles, so they can be found there.
+**Note that** the tiny octopuses spit out by the turtle zone boss are classified as projectiles, so they can be found there.
 
 ### Enemy-Level connection
 To find out which enemies are in which levels you can look at `./enemy_level.json`, which is specified as:
@@ -90,7 +88,7 @@ interface ProjectileAppearance {
 
 interface ProjectilesJson {
     projectiles: Projectile[];
-    exists_in: ProjectileAppearance[];
+    appearances: ProjectileAppearance[];
 }
 ```
 

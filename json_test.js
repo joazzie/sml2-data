@@ -2,14 +2,20 @@ import enemies from './enemies.json' with {type: "json"};
 import levels from './levels.json' with {type: "json"};
 import enemy_level from './enemy_level.json' with {type: "json"};
 import projectiles from './projectiles.json' with {type: "json"};
+import hazards from './hazards.json' with {type: "json"};
+
+let succeeded = 0;
+let failed = 0;
 
 const test = (name, fn) => {
     try {
         fn();
         console.log(`✓ ${name}`);
+        succeeded += 1;
     } catch (e) {
         console.log(`✗ ${name}`);
         console.error(e);
+        failed += 1;
     }
 }
 
@@ -215,9 +221,9 @@ test('all projectiles have all fields', () => {
         assertKey('starrable', projectile);
     });
 
-    assertKey('exist_in', projectiles);
-    assert(Array.isArray(projectiles.exist_in));
-    projectiles.exist_in.forEach(appearance => {
+    assertKey('appearances', projectiles);
+    assert(Array.isArray(projectiles.appearances));
+    projectiles.appearances.forEach(appearance => {
         assertObject(appearance);
         assertKey('projectile_name', appearance);
         assertKey('level_zone', appearance);
@@ -233,7 +239,7 @@ test('all projectiles have correct field data', () => {
         assert(typeof projectile.starrable === 'boolean');
     });
 
-    projectiles.exist_in.forEach(appearance => {
+    projectiles.appearances.forEach(appearance => {
         assertName(appearance.projectile_name);
         assertName(appearance.level_zone);
         assertName(appearance.level_stage);
@@ -252,7 +258,7 @@ test('no duplicate projectile names', () => {
 test('all projectiles have appearances', () => {
     projectiles.projectiles.forEach(projectile => {
         assert(
-            projectiles.exist_in.find(appearance => appearance.projectile_name === projectile.name) !== undefined,
+            projectiles.appearances.find(appearance => appearance.projectile_name === projectile.name) !== undefined,
             `projectile ${projectile.name} has no appearances`,
         );
     });
@@ -265,7 +271,7 @@ test('all projectile references point to valid data', () => {
         }
     });
 
-    projectiles.exist_in.forEach(appearance => {
+    projectiles.appearances.forEach(appearance => {
         assert(projectiles.projectiles.find(projectile => projectile.name === appearance.projectile_name) !== undefined);
         assert(levels.find(level => level.zone === appearance.level_zone && level.stage === appearance.level_stage));
     });
@@ -278,7 +284,7 @@ test('all projectiles with enemies have the exact same appearances as those enem
             assert(enemy !== undefined);
 
             const enemyAppearances = enemy_level.filter(appearance => appearance.enemy_name_en === enemy.name_en);
-            const projectileAppearances = projectiles.exist_in.filter(appearance => appearance.projectile_name === projectile.name);
+            const projectileAppearances = projectiles.appearances.filter(appearance => appearance.projectile_name === projectile.name);
 
             enemyAppearances.forEach(appearance => {
                 assert(
@@ -302,3 +308,62 @@ test('all projectiles with enemies have the exact same appearances as those enem
         }
     });
 });
+
+/// hazards
+test('all hazards have all fields', () => {
+    assertObject(hazards);
+
+    assertKey('hazards', hazards);
+    assert(Array.isArray(hazards.hazards));
+    hazards.hazards.forEach(hazard => {
+        assertKey('name', hazard);
+        assertKey('starrable', hazard);
+    });
+
+    assertKey('appearances', hazards);
+    assert(Array.isArray(hazards.appearances));
+    hazards.appearances.forEach(appearance => {
+        assertKey('hazard_name', appearance);
+        assertKey('level_zone', appearance);
+        assertKey('level_stage', appearance);
+        assertKey('amount', appearance);
+    });
+});
+
+test('all hazards have correct field data', () => {
+    hazards.hazards.forEach(hazard => {
+        assertName(hazard.name);
+        assert(typeof hazard.starrable === 'boolean');
+    });
+
+    hazards.appearances.forEach(appearance => {
+        assertName(appearance.hazard_name);
+        assertName(appearance.level_zone);
+        assertName(appearance.level_stage);
+        assertAmount(appearance.amount);
+    });
+});
+
+test('no duplicate hazard names', () => {
+    hazards.hazards.forEach((hazard, hazardIndex) => {
+        for (let index = hazardIndex + 1; index < hazards.hazards.length; index++) {
+            assert(hazard.name !== hazards.hazards[index].name, `duplicate name ${hazard.name}`);
+        }
+    });
+});
+
+test('all hazards have appearances', () => {
+    hazards.hazards.forEach(hazard => {
+        assert(hazards.appearances.find(appearance => appearance.hazard_name === hazard.name) !== undefined);
+    });
+});
+
+test('all hazards appearances point to valid data', () => {
+    hazards.appearances.forEach(appearance => {
+        assert(hazards.hazards.find(hazard => hazard.name === appearance.hazard_name) !== undefined);
+        assert(levels.find(level => level.zone === appearance.level_zone && level.stage === appearance.level_stage) !== undefined);
+    });
+});
+
+/// show results
+console.log(`succeeded: ${succeeded} | failed: ${failed}`);

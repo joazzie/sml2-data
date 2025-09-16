@@ -5,13 +5,14 @@
         {"name": "fireball (l)", "enemy_name_en": null, "starrable": true},
         {"name": "boulder", "enemy_name_en": "goronto", "starrable": true},
         {"name": "ant bullet", "enemy_name_en": "dokanto", "starrable": true},
+        {"name": "pig ball", "enemy_name_en": "bomubomu", "starrable": true},
         {"name": "tatanga ball", "enemy_name_en": "tatanga", "starrable": false},
         {"name": "tatanga beam", "enemy_name_en": "tatanga", "starrable": false},
         {"name": "witch fire", "enemy_name_en": "witch", "starrable": false},
         {"name": "poco", "enemy_name_en": "octopus", "starrable": false},
         {"name": "wario fireball", "enemy_name_en": "wario", "starrable": false}
     ],
-    "exist_in": [
+    "appearances": [
         {"projectile_name": "fireball (s)", "level_zone": "tree", "level_stage": "l", "amount": 4},
         {"projectile_name": "fireball (s)", "level_zone": "macro", "level_stage": "2", "amount": 3},
         {"projectile_name": "fireball (s)", "level_zone": "macro", "level_stage": "4", "amount": 1},
@@ -20,6 +21,9 @@
         {"projectile_name": "fireball (s)", "level_zone": "pumpkin", "level_stage": "3", "amount": 1},
         {"projectile_name": "boulder", "level_zone": "macro", "level_stage": "1", "amount": 3},
         {"projectile_name": "ant bullet", "level_zone": "macro", "level_stage": "1", "amount": 3},
+        {"projectile_name": "pig ball", "level_zone": "space", "level_stage": "1", "amount": 9},
+        {"projectile_name": "pig ball", "level_zone": "mario", "level_stage": "2", "amount": 8},
+        {"projectile_name": "pig ball", "level_zone": "mario", "level_stage": "4", "amount": 2},
         {"projectile_name": "fireball (m)", "level_zone": "overworld", "level_stage": "castle", "amount": 4},
         {"projectile_name": "fireball (l)", "level_zone": "overworld", "level_stage": "castle", "amount": 1},
         {"projectile_name": "tatanga ball", "level_zone": "space", "level_stage": "2", "amount": 1},

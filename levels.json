@@ -1,40 +1,40 @@
 [
     {"zone": "overworld", "stage": "intro", "stars": 1, "coins": 68, "question_blocks": 20, "money_bags": 0},
     {"zone": "overworld", "stage": "misc x", "stars": 1, "coins": 0, "question_blocks": 4, "money_bags": 0},
-    {"zone": "overworld", "stage": "hippo", "stars": 0, "coins": 139, "question_blocks": 32, "money_bags": 100},
+    {"zone": "overworld", "stage": "hippo", "stars": 0, "coins": 139, "question_blocks": 32, "money_bags": 2},
     {"zone": "overworld", "stage": "castle", "stars": 0, "coins": 0, "question_blocks": 0, "money_bags": 0},
 
     {"zone": "tree", "stage": "1", "stars": 2, "coins": 107, "question_blocks": 11, "money_bags": 0},
-    {"zone": "tree", "stage": "2", "stars": 0, "coins": 93, "question_blocks": 5, "money_bags": 100},
+    {"zone": "tree", "stage": "2", "stars": 0, "coins": 93, "question_blocks": 5, "money_bags": 2},
     {"zone": "tree", "stage": "s", "stars": 0, "coins": 75, "question_blocks": 0, "money_bags": 0},
-    {"zone": "tree", "stage": "l", "stars": 0, "coins": 24, "question_blocks": 0, "money_bags": 50},
+    {"zone": "tree", "stage": "l", "stars": 0, "coins": 24, "question_blocks": 0, "money_bags": 1},
     {"zone": "tree", "stage": "r", "stars": 2, "coins": 5, "question_blocks": 69, "money_bags": 0},
     {"zone": "tree", "stage": "t", "stars": 1, "coins": 18, "question_blocks": 15, "money_bags": 0},
 
-    {"zone": "space", "stage": "1", "stars": 0, "coins": 125, "question_blocks": 6, "money_bags": 150},
+    {"zone": "space", "stage": "1", "stars": 0, "coins": 125, "question_blocks": 6, "money_bags": 3},
     {"zone": "space", "stage": "s", "stars": 0, "coins": 100, "question_blocks": 0, "money_bags": 0},
     {"zone": "space", "stage": "2", "stars": 1, "coins": 99, "question_blocks": 33, "money_bags": 0},
 
-    {"zone": "macro", "stage": "1", "stars": 0, "coins": 90, "question_blocks": 7, "money_bags": 50},
+    {"zone": "macro", "stage": "1", "stars": 0, "coins": 90, "question_blocks": 7, "money_bags": 1},
     {"zone": "macro", "stage": "s", "stars": 0, "coins": 35, "question_blocks": 0, "money_bags": 0},
     {"zone": "macro", "stage": "2", "stars": 2, "coins": 69, "question_blocks": 0, "money_bags": 0},
-    {"zone": "macro", "stage": "3", "stars": 1, "coins": 115, "question_blocks": 0, "money_bags": 50},
-    {"zone": "macro", "stage": "4", "stars": 0, "coins": 59, "question_blocks": 0, "money_bags": 50},
+    {"zone": "macro", "stage": "3", "stars": 1, "coins": 115, "question_blocks": 0, "money_bags": 1},
+    {"zone": "macro", "stage": "4", "stars": 0, "coins": 59, "question_blocks": 0, "money_bags": 1},
 
     {"zone": "pumpkin", "stage": "1", "stars": 0, "coins": 35, "question_blocks": 5, "money_bags": 0},
     {"zone": "pumpkin", "stage": "2", "stars": 1, "coins": 34, "question_blocks": 2, "money_bags": 0},
     {"zone": "pumpkin", "stage": "s", "stars": 1, "coins": 409, "question_blocks": 0, "money_bags": 0},
     {"zone": "pumpkin", "stage": "3", "stars": 0, "coins": 42, "question_blocks": 19, "money_bags": 0},
     {"zone": "pumpkin", "stage": "s2", "stars": 0, "coins": 12, "question_blocks": 0, "money_bags": 0},
-    {"zone": "pumpkin", "stage": "4", "stars": 0, "coins": 64, "question_blocks": 9, "money_bags": 50},
+    {"zone": "pumpkin", "stage": "4", "stars": 0, "coins": 64, "question_blocks": 9, "money_bags": 1},
 
     {"zone": "mario", "stage": "1", "stars": 0, "coins": 105, "question_blocks": 9, "money_bags": 0},
-    {"zone": "mario", "stage": "2", "stars": 1, "coins": 40, "question_blocks": 6, "money_bags": 50},
+    {"zone": "mario", "stage": "2", "stars": 1, "coins": 40, "question_blocks": 6, "money_bags": 1},
     {"zone": "mario", "stage": "3", "stars": 0, "coins": 47, "question_blocks": 7, "money_bags": 0},
-    {"zone": "mario", "stage": "4", "stars": 0, "coins": 60, "question_blocks": 3, "money_bags": 50},
+    {"zone": "mario", "stage": "4", "stars": 0, "coins": 60, "question_blocks": 3, "money_bags": 1},
 
-    {"zone": "turtle", "stage": "1", "stars": 1, "coins": 64, "question_blocks": 13, "money_bags": 50},
-    {"zone": "turtle", "stage": "2", "stars": 1, "coins": 0, "question_blocks": 27, "money_bags": 50},
-    {"zone": "turtle", "stage": "s", "stars": 0, "coins": 97, "question_blocks": 0, "money_bags": 50},
-    {"zone": "turtle", "stage": "3", "stars": 0, "coins": 54, "question_blocks": 5, "money_bags": 50}
+    {"zone": "turtle", "stage": "1", "stars": 1, "coins": 64, "question_blocks": 13, "money_bags": 1},
+    {"zone": "turtle", "stage": "2", "stars": 1, "coins": 0, "question_blocks": 27, "money_bags": 1},
+    {"zone": "turtle", "stage": "s", "stars": 0, "coins": 97, "question_blocks": 0, "money_bags": 1},
+    {"zone": "turtle", "stage": "3", "stars": 0, "coins": 54, "question_blocks": 5, "money_bags": 1}
 ]
