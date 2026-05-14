@@ -31,6 +31,10 @@ const assertAmount = (amount, msg = '') => {
     assert(typeof amount === 'number' && amount >= 0, msg);
 }
 
+const assertBool = (bool, msg = '') => {
+    assert(typeof bool === 'boolean');
+}
+
 const assertName = (name, msg = '') => {
     assert(typeof name === 'string' && name !== '', msg);
 }
@@ -60,10 +64,10 @@ test('all enemies have correct field data', () => {
     enemies.forEach(enemy => {
         assertName(enemy.name_en, `english name of ${JSON.stringify(enemy)} is wrong`);
         assertName(enemy.name_jp, `japanese name of ${JSON.stringify(enemy)} is wrong`);
-        assert(typeof enemy.stompable === 'boolean');
-        assert(typeof enemy.flammable === 'boolean');
-        assert(typeof enemy.starrable === 'boolean');
-        assert(typeof enemy.boss === 'boolean');
+        assertBool(enemy.stompable);
+        assertBool(enemy.flammable);
+        assertBool(enemy.starrable);
+        assertBool(enemy.boss);
         assert(typeof enemy.kill_condition === 'number' && (
             enemy.kill_condition === 0 ||
             enemy.kill_condition === 1 ||
@@ -121,10 +125,12 @@ test('all levels have all fields', () => {
         assertObject(level);
         assertKey('zone', level);
         assertKey('stage', level);
+        assertKey('timer', level);
         assertKey('stars', level);
         assertKey('coins', level);
         assertKey('question_blocks', level);
         assertKey('money_bags', level);
+        assertKey('has_checkpoint', level);
     });
 });
 
@@ -132,10 +138,12 @@ test('all levels have correct field data', () => {
     levels.forEach(level => {
         assertName(level.zone);
         assertName(level.stage);
+        assertAmount(level.timer);
         assertAmount(level.stars);
         assertAmount(level.coins);
         assertAmount(level.question_blocks);
         assertAmount(level.money_bags);
+        assertBool(level.has_checkpoint);
     });
 });
 
@@ -236,7 +244,7 @@ test('all projectiles have correct field data', () => {
     projectiles.projectiles.forEach(projectile => {
         assertName(projectile.name);
         assert(projectile.enemy_name_en === null || typeof projectile.enemy_name_en === 'string');
-        assert(typeof projectile.starrable === 'boolean');
+        assertBool(projectile.starrable);
     });
 
     projectiles.appearances.forEach(appearance => {
@@ -333,7 +341,7 @@ test('all hazards have all fields', () => {
 test('all hazards have correct field data', () => {
     hazards.hazards.forEach(hazard => {
         assertName(hazard.name);
-        assert(typeof hazard.starrable === 'boolean');
+        assertBool(hazard.starrable);
     });
 
     hazards.appearances.forEach(appearance => {

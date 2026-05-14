@@ -6,11 +6,13 @@ Level data can be found in `./levels.json`, which is specified as:
 interface Level {
     zone: "overworld" | "tree" | "space" | "macro" | "pumpkin" | "mario" | "turtle";
     stage: string;
+    timer: number;
     stars: number;
     coins: number;
     question_blocks: number;
     /** Each money bag contains 50 coins */
     money_bags: number;
+    has_checkpoint: boolean;
 }
 
 type LevelsJson = Level[];
